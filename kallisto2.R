@@ -26,13 +26,15 @@ s2c <- dplyr::mutate(s2c, path = kal_dirs)
 
 s2c
 
-print(s2c)
-
 
 so <- sleuth_prep(s2c, extra_bootstrap_summary = TRUE)
 so <- sleuth_fit(so, ~condition, 'full')
 so <- sleuth_fit(so, ~1, 'reduced')
 so <- sleuth_lrt(so, 'reduced', 'full')
+sleuth_live(so)
+
+install.packages("gridExtra")
+library(gridExtra)
 
 models(so)
 
